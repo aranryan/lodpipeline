@@ -3,8 +3,10 @@
 load("output_data/out_open_year.Rdata")
 load("output_data/out_changes.Rdata")
 
+write.csv(out_changes, file="output_data/out_changes.csv")
+
 out_open_year <- out_open_year %>%
-  filter(segment =="ustot")%>%
+  #filter(segment =="ustot")%>%
   arrange(hori, sourcemonth)
 
 out_changes <- out_changes %>%

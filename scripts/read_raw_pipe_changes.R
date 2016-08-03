@@ -10,7 +10,7 @@
 
 yr_list <- rep(2007:2012)
 yr_list <- c(paste("input_data/Pipeline_December ", yr_list, ".xls", sep=""))
-newyr_list <- rep(2013:2014)
+newyr_list <- rep(2013:2015)
 newyr_list <- c(paste("input_data/PipelineSummary_US_", newyr_list, "12.xls", sep=""))
 yr_list <- c(yr_list, newyr_list)
 yr_list
