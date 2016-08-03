@@ -5,7 +5,7 @@
 require("rmarkdown")
 require("knitr")
 require("grid")
-require("xlsx")
+#require("xlsx")
 require("tframe")
 require("tframePlus")
 require("lubridate")

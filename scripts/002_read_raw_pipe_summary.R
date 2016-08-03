@@ -4,9 +4,14 @@
 # reads in the "Pipeline by Year Open" tab from multiple pipeline summary files
 # saves an Rdata file as a result
 
+# test XLconnect by creating a new workbook
+wb.new <- loadWorkbook("myNewExcelFile.xlsx", create = TRUE)
+
+
 #######
 #
 # name of files to read
+
 
 yr_list <- rep(2007:2012)
 yr_list <- c(paste("input_data/Pipeline_December ", yr_list, ".xls", sep=""))
@@ -15,7 +20,7 @@ newyr_list <- c(paste("input_data/PipelineSummary_US_", newyr_list, "12.xls", se
 yr_list <- c(yr_list, newyr_list)
 yr_list
 
-# Create Data Frame with NA's
+# Create data frame with NA's
 out_open_year <- data.frame(matrix(NA, nrow=0, ncol=13)) 
 colnames(out_open_year) <- c("sourcemonth", 
              "open_year", 
@@ -32,8 +37,8 @@ colnames(out_open_year) <- c("sourcemonth",
              "htlsprpln")
 
 for (y in yr_list) {
-  print(paste("starting ", y, sep=""))
-    # I started with read xlsx package but I wasn't reading the formulas used for the totals
+    print(paste("starting ", y, sep=""))
+  # I started with read xlsx package but I wasn't reading the formulas used for the totals
   # starting in 2013 files. So I switched over to XLConnect, which happened to work
   #tempa <- read.xlsx(y, sheetName="Pipeline by Year Open", startRow=1,colIndex =1:14,
   #                   header = FALSE)
