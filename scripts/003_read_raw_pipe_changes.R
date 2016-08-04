@@ -10,20 +10,33 @@
 
 yr_list <- rep(2007:2012)
 yr_list <- c(paste("input_data/Pipeline_December ", yr_list, ".xls", sep=""))
+# start in 2008 for the May files because the tab names are different in the May 2007 version
+yr_list2 <- rep(2008:2013)
+yr_list2 <- c(paste("input_data/Pipeline_May ", yr_list2, ".xls", sep=""))
+
 newyr_list <- rep(2013:2015)
 newyr_list <- c(paste("input_data/PipelineSummary_US_", newyr_list, "12.xls", sep=""))
-yr_list <- c(yr_list, newyr_list)
+#newyr_list2 <- rep(2014:2016)
+newyr_list2 <- rep(2014:2014)
+newyr_list2 <- c(paste("input_data/PipelineSummary_US_", newyr_list2, "05.xls", sep=""))
+
+#yr_list <- c(yr_list, yr_list2, newyr_list, newyr_list2)
+yr_list <- c(yr_list, yr_list2, newyr_list, newyr_list2)
 yr_list
 
 # Create Data Frame with NA's
 out_changes <- data.frame(matrix(NA, nrow=0, ncol=19)) 
 
 for (y in yr_list) {
-  
+# For trouble shooting you can run with a single file here
+#y <- c("input_data/Pipeline_May 2008.xls")
+    print(paste("starting ", y, sep=""))
   wb = loadWorkbook(y)
   tempa <- readWorksheet(wb, sheet="Existing Supply Chgs by Brand", startRow=1, startCol=1, 
                          endCol=21,
                          header = FALSE)
+  
+  
   temp <- tempa
   
   # looks in the first column to see if there any matches for the text string
@@ -189,7 +202,8 @@ out_changes <- rbind(out_changes, ustot_changes)
 # going with December census rather than November
 out_changes <- out_changes %>%
   mutate(yrofchange=as.Date(paste(year(sourcemonth), "-01-01", sep=""))) %>%
-  select(sourcemonth, yrofchange,segment, pryearsupply:fiveyrgainloss) %>%
+  mutate(srcm_month = month(sourcemonth, label=TRUE, abbr=TRUE)) %>%
+  select(sourcemonth, srcm_month, yrofchange,segment, pryearsupply:fiveyrgainloss) %>%
   arrange(segment, sourcemonth)
 
 # saves Rdata version of the data

@@ -15,9 +15,20 @@ wb.new <- loadWorkbook("myNewExcelFile.xlsx", create = TRUE)
 
 yr_list <- rep(2007:2012)
 yr_list <- c(paste("input_data/Pipeline_December ", yr_list, ".xls", sep=""))
+# start in 2008 for the May files because the tab names are different in the May 2007 version
+yr_list2 <- rep(2008:2013)
+yr_list2 <- c(paste("input_data/Pipeline_May ", yr_list2, ".xls", sep=""))
+# read in May 2007 separately given different format
+yr_list3 <- rep(2007:2007)
+yr_list3 <- c(paste("input_data/Pipeline_May ", yr_list3, " extract.xls", sep=""))
+
 newyr_list <- rep(2013:2015)
 newyr_list <- c(paste("input_data/PipelineSummary_US_", newyr_list, "12.xls", sep=""))
-yr_list <- c(yr_list, newyr_list)
+newyr_list2 <- rep(2014:2016)
+newyr_list2 <- c(paste("input_data/PipelineSummary_US_", newyr_list2, "05.xls", sep=""))
+
+
+yr_list <- c(yr_list, yr_list2, yr_list3, newyr_list, newyr_list2)
 yr_list
 
 # Create data frame with NA's
@@ -37,6 +48,7 @@ colnames(out_open_year) <- c("sourcemonth",
              "htlsprpln")
 
 for (y in yr_list) {
+#y <- c("input_data/Pipeline_May 2007 extract.xls")
     print(paste("starting ", y, sep=""))
   # I started with read xlsx package but I wasn't reading the formulas used for the totals
   # starting in 2013 files. So I switched over to XLConnect, which happened to work
@@ -181,6 +193,7 @@ out_open_year <- out_open_year %>%
   mutate(sourcemonth=sub("Data for end of ", "", sourcemonth)) %>%
   mutate(sourcemonth=sub(",", "", sourcemonth)) %>%
   mutate(sourcemonth=as.Date(as.yearmon(sourcemonth, "%B %Y"))) %>%
+  mutate(srcm_month = month(sourcemonth, label=TRUE, abbr=TRUE)) %>%
   mutate(and_later=str_detect(open_year, "and Later")) %>%
   mutate(open_year=sub("Open Date ", "", open_year)) %>%
   mutate(open_year=sub(" and Later", "", open_year)) %>%
@@ -198,7 +211,7 @@ out_open_year$and_later <- Recode(out_open_year$and_later, "c(TRUE)=' and later'
 out_open_year <- out_open_year %>%
   mutate(horitext=paste(horitext, and_later, sep="")) %>%
   select(-and_later) %>%
-  select(sourcemonth, open_year, hori, horitext, segment:htlsuncnf)
+  select(sourcemonth, srcm_month, open_year, hori, horitext, segment:htlsuncnf)
 
 # saves Rdata version of the data
 save(out_open_year, file="output_data/out_open_year.Rdata")
