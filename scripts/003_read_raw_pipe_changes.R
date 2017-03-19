@@ -14,10 +14,10 @@ yr_list <- c(paste("input_data/Pipeline_December ", yr_list, ".xls", sep=""))
 yr_list2 <- rep(2008:2013)
 yr_list2 <- c(paste("input_data/Pipeline_May ", yr_list2, ".xls", sep=""))
 
-newyr_list <- rep(2013:2015)
+newyr_list <- rep(2013:2016)
 newyr_list <- c(paste("input_data/PipelineSummary_US_", newyr_list, "12.xls", sep=""))
 #newyr_list2 <- rep(2014:2016)
-newyr_list2 <- rep(2014:2014)
+newyr_list2 <- rep(2014:2016)
 newyr_list2 <- c(paste("input_data/PipelineSummary_US_", newyr_list2, "05.xls", sep=""))
 
 #yr_list <- c(yr_list, yr_list2, newyr_list, newyr_list2)
