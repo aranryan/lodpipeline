@@ -1,4 +1,3 @@
-rm(list = ls())
 
 source("scripts/001_functions.R")
 
