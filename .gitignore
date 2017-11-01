@@ -1,5 +1,5 @@
 .Rproj.user
 .Rhistory
 .RData
-/input_data/*.xls
+/input_data/str_files/*.xls
 /output_data/*.Rdata
