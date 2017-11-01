@@ -179,7 +179,7 @@ for (y in yr_list) {
                 "Unaffiliated", "Total")
     tempb <- tempb %>%
       filter(segment %in% target) %>% 
-      mutate(segment = gsub("Total", "ustot", segment)) %>%
+      mutate(segment = gsub("Total", "totus", segment)) %>%
       mutate(segment = gsub("Luxury", "luxus", segment)) %>%
       mutate(segment = gsub("Upper Upscale", "upuus", segment)) %>%
       mutate(segment = gsub("Upscale", "upsus", segment)) %>%
