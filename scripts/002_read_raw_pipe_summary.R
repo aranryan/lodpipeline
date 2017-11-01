@@ -1,4 +1,27 @@
 
+require("rmarkdown")
+require("knitr")
+require("grid")
+#require("xlsx")
+require("tframe")
+require("tframePlus")
+require("lubridate")
+require("stringr")
+require("scales")
+require("zoo")
+require("xts")
+
+require("forecast")
+require("car")
+require("reshape2")
+require("ggplot2")
+require("tidyr")
+require("plyr") #Hadley said if you load plyr first it should be fine
+require("dplyr")
+library("readr")
+require("XLConnect")
+
+
 #######
 #
 # reads in the "Pipeline by Year Open" tab from multiple pipeline summary files
@@ -14,20 +37,20 @@ wb.new <- loadWorkbook("myNewExcelFile.xlsx", create = TRUE)
 
 
 yr_list <- rep(2007:2012)
-yr_list <- c(paste("input_data/Pipeline_December ", yr_list, ".xls", sep=""))
+yr_list <- c(paste("input_data/str_files/Pipeline_December ", yr_list, ".xls", sep=""))
 # start in 2008 for the May files because the tab names are different in the May 2007 version
 yr_list2 <- rep(2008:2013)
-yr_list2 <- c(paste("input_data/Pipeline_May ", yr_list2, ".xls", sep=""))
+yr_list2 <- c(paste("input_data/str_files/Pipeline_May ", yr_list2, ".xls", sep=""))
 # read in May 2007 separately given different format
 yr_list3 <- rep(2007:2007)
-yr_list3 <- c(paste("input_data/Pipeline_May ", yr_list3, " extract.xls", sep=""))
+yr_list3 <- c(paste("input_data/str_files/Pipeline_May ", yr_list3, " extract.xls", sep=""))
 
 newyr_list <- rep(2013:2016)
-newyr_list <- c(paste("input_data/PipelineSummary_US_", newyr_list, "12.xls", sep=""))
+newyr_list <- c(paste("input_data/str_files/PipelineSummary_US_", newyr_list, "12.xls", sep=""))
 newyr_list2 <- rep(2014:2016)
-newyr_list2 <- c(paste("input_data/PipelineSummary_US_", newyr_list2, "05.xls", sep=""))
+newyr_list2 <- c(paste("input_data/str_files/PipelineSummary_US_", newyr_list2, "05.xls", sep=""))
 newyr_list3 <- rep(2014:2017)
-newyr_list3 <- c(paste("input_data/PipelineSummary_US_", newyr_list3, "09.xls", sep=""))
+newyr_list3 <- c(paste("input_data/str_files/PipelineSummary_US_", newyr_list3, "09.xls", sep=""))
 
 yr_list <- c(yr_list, yr_list2, yr_list3, newyr_list, newyr_list2, newyr_list3)
 yr_list

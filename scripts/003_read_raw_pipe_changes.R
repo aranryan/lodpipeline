@@ -1,4 +1,27 @@
 
+require("rmarkdown")
+require("knitr")
+require("grid")
+#require("xlsx")
+require("tframe")
+require("tframePlus")
+require("lubridate")
+require("stringr")
+require("scales")
+require("zoo")
+require("xts")
+
+require("forecast")
+require("car")
+require("reshape2")
+require("ggplot2")
+require("tidyr")
+require("plyr") #Hadley said if you load plyr first it should be fine
+require("dplyr")
+library("readr")
+require("XLConnect")
+
+
 #######
 #
 # reads in the "Pipeline by Year Open" tab from multiple pipeline summary files
@@ -9,16 +32,16 @@
 # name of files to read
 
 yr_list <- rep(2007:2012)
-yr_list <- c(paste("input_data/Pipeline_December ", yr_list, ".xls", sep=""))
+yr_list <- c(paste("input_data/str_files/Pipeline_December ", yr_list, ".xls", sep=""))
 # start in 2008 for the May files because the tab names are different in the May 2007 version
 yr_list2 <- rep(2008:2013)
-yr_list2 <- c(paste("input_data/Pipeline_May ", yr_list2, ".xls", sep=""))
+yr_list2 <- c(paste("input_data/str_files/Pipeline_May ", yr_list2, ".xls", sep=""))
 
 newyr_list <- rep(2013:2016)
-newyr_list <- c(paste("input_data/PipelineSummary_US_", newyr_list, "12.xls", sep=""))
+newyr_list <- c(paste("input_data/str_files/PipelineSummary_US_", newyr_list, "12.xls", sep=""))
 #newyr_list2 <- rep(2014:2016)
 newyr_list2 <- rep(2014:2016)
-newyr_list2 <- c(paste("input_data/PipelineSummary_US_", newyr_list2, "05.xls", sep=""))
+newyr_list2 <- c(paste("input_data/str_files/PipelineSummary_US_", newyr_list2, "05.xls", sep=""))
 
 #yr_list <- c(yr_list, yr_list2, newyr_list, newyr_list2)
 yr_list <- c(yr_list, yr_list2, newyr_list, newyr_list2)
@@ -189,11 +212,11 @@ for (y in yr_list) {
 }
 
 # adds US totals, summing all entries for a given month
-ustot_changes <- out_changes %>%
+totus_changes <- out_changes %>%
   group_by(sourcemonth) %>% 
   summarise_each(funs(sum), pryearsupply:fiveyrgainloss) %>%
-  mutate(segment="ustot")
-out_changes <- rbind(out_changes, ustot_changes)  
+  mutate(segment="totus")
+out_changes <- rbind(out_changes, totus_changes)  
 
 # adds column that is the year of the changes
 # this simplifies a bit, because in many cases I have changes through
@@ -206,5 +229,6 @@ out_changes <- out_changes %>%
   select(sourcemonth, srcm_month, yrofchange,segment, pryearsupply:fiveyrgainloss) %>%
   arrange(segment, sourcemonth)
 
-# saves Rdata version of the data
+# saves output
 save(out_changes, file="output_data/out_changes.Rdata")
+write_csv(out_changes, path="output_data/out_changes.csv")
