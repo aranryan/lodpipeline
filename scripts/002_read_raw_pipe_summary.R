@@ -51,8 +51,10 @@ newyr_list2 <- rep(2014:2016)
 newyr_list2 <- c(paste("input_data/str_files/PipelineSummary_US_", newyr_list2, "05.xls", sep=""))
 newyr_list3 <- rep(2014:2017)
 newyr_list3 <- c(paste("input_data/str_files/PipelineSummary_US_", newyr_list3, "09.xls", sep=""))
+newyr_list4 <- rep(2013:2017)
+newyr_list4 <- c(paste("input_data/str_files/PipelineSummary_US_", newyr_list4, "11.xls", sep=""))
 
-yr_list <- c(yr_list, yr_list2, yr_list3, newyr_list, newyr_list2, newyr_list3)
+yr_list <- c(yr_list, yr_list2, yr_list3, newyr_list, newyr_list2, newyr_list3, newyr_list4)
 yr_list
 
 # Create data frame with NA's
