@@ -2,4 +2,5 @@
 .Rhistory
 .RData
 /input_data/str_files/*.xls
+/input_data/str_files/*.xlsx
 /output_data/*.Rdata

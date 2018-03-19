@@ -45,7 +45,7 @@ yr_list2 <- c(paste("input_data/str_files/Pipeline_May ", yr_list2, ".xls", sep=
 yr_list3 <- rep(2007:2007)
 yr_list3 <- c(paste("input_data/str_files/Pipeline_May ", yr_list3, " extract.xls", sep=""))
 
-newyr_list <- rep(2013:2016)
+newyr_list <- rep(2013:2017)
 newyr_list <- c(paste("input_data/str_files/PipelineSummary_US_", newyr_list, "12.xls", sep=""))
 newyr_list2 <- rep(2014:2016)
 newyr_list2 <- c(paste("input_data/str_files/PipelineSummary_US_", newyr_list2, "05.xls", sep=""))
