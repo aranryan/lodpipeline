@@ -53,8 +53,10 @@ newyr_list3 <- rep(2014:2017)
 newyr_list3 <- c(paste("input_data/str_files/PipelineSummary_US_", newyr_list3, "09.xls", sep=""))
 newyr_list4 <- rep(2013:2017)
 newyr_list4 <- c(paste("input_data/str_files/PipelineSummary_US_", newyr_list4, "11.xls", sep=""))
+newyr_list5 <- rep(2015:2018)
+newyr_list5 <- c(paste("input_data/str_files/PipelineSummary_US_", newyr_list5, "03.xls", sep=""))
 
-yr_list <- c(yr_list, yr_list2, yr_list3, newyr_list, newyr_list2, newyr_list3, newyr_list4)
+yr_list <- c(yr_list, yr_list2, yr_list3, newyr_list, newyr_list2, newyr_list3, newyr_list4, newyr_list5)
 yr_list
 
 # Create data frame with NA's
@@ -75,6 +77,7 @@ colnames(out_open_year) <- c("sourcemonth",
 
 for (y in yr_list) {
 #y <- c("input_data/Pipeline_May 2007 extract.xls")
+#y <- c("input_data/str_files/PipelineSummary_US_201703.xls")
     print(paste("starting ", y, sep=""))
   # I started with read xlsx package but I wasn't reading the formulas used for the totals
   # starting in 2013 files. So I switched over to XLConnect, which happened to work
@@ -99,7 +102,7 @@ for (y in yr_list) {
     # uses first column to put open date year into open_year current row and the next 11
     
     # creates list of years
-    years_list <- rep(2007:2020)
+    years_list <- rep(2007:2021)
     years_list <- paste("Open Date ", years_list, sep="")
     
     for (y in years_list) {
