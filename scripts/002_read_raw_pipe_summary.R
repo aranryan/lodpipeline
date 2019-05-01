@@ -79,7 +79,7 @@ colnames(out_open_year) <- c("sourcemonth",
 
 for (y in yr_list) {
 #y <- c("input_data/Pipeline_May 2007 extract.xls")
-#y <- c("input_data/str_files/PipelineSummary_US_201703.xls")
+y <- c("input_data/str_files/PipelineSummary_US_201903.xls")
     print(paste("starting ", y, sep=""))
   # I started with read xlsx package but I wasn't reading the formulas used for the totals
   # starting in 2013 files. So I switched over to XLConnect, which happened to work
