@@ -2,7 +2,6 @@
 require("rmarkdown")
 require("knitr")
 require("grid")
-#require("xlsx")
 require("tframe")
 require("tframePlus")
 require("lubridate")
@@ -13,10 +12,8 @@ require("xts")
 
 require("forecast")
 require("car")
-require("reshape2")
 require("ggplot2")
 require("tidyr")
-require("plyr") #Hadley said if you load plyr first it should be fine
 require("dplyr")
 library("readr")
 require("XLConnect")
