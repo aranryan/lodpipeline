@@ -20,6 +20,8 @@ require("XLConnect")
 
 
 load("output_data/out_open_year.Rdata")
+
+# first copy over scalstat from the lodfor_v02 output_data directory
 scalstat <- readr::read_csv(file="input_data/scalstat.csv", 
                      col_names = TRUE, 
                      cols(.default = "n", 
