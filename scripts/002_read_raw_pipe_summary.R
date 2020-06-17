@@ -45,7 +45,7 @@ yr_list2 <- c(paste("input_data/str_files/Pipeline_May ", yr_list2, ".xls", sep=
 yr_list3 <- rep(2007:2007)
 yr_list3 <- c(paste("input_data/str_files/Pipeline_May ", yr_list3, " extract.xls", sep=""))
 
-newyr_list <- rep(2013:2017)
+newyr_list <- rep(2013:2019)
 newyr_list <- c(paste("input_data/str_files/PipelineSummary_US_", newyr_list, "12.xls", sep=""))
 newyr_list2 <- rep(2014:2019)
 newyr_list2 <- c(paste("input_data/str_files/PipelineSummary_US_", newyr_list2, "05.xls", sep=""))
@@ -55,8 +55,10 @@ newyr_list4 <- rep(2013:2019)
 newyr_list4 <- c(paste("input_data/str_files/PipelineSummary_US_", newyr_list4, "11.xls", sep=""))
 newyr_list5 <- rep(2015:2019)
 newyr_list5 <- c(paste("input_data/str_files/PipelineSummary_US_", newyr_list5, "03.xls", sep=""))
-newyr_list6 <- rep(2015:2018)
-newyr_list6 <- c(paste("input_data/str_files/PipelineSummary_US_", newyr_list6, "06.xls", sep=""))
+newyr_list6 <- rep(2018:2020)
+newyr_list6 <- c(paste("input_data/str_files/PipelineSummary_US_", newyr_list6, "04.xls", sep=""))
+newyr_list7 <- rep(2015:2018)
+newyr_list7 <- c(paste("input_data/str_files/PipelineSummary_US_", newyr_list7, "06.xls", sep=""))
 
 yr_list <- c(yr_list, yr_list2, yr_list3, newyr_list, newyr_list2, newyr_list3, newyr_list4, newyr_list5, newyr_list6)
 yr_list
@@ -104,7 +106,7 @@ for (y in yr_list) {
     # uses first column to put open date year into open_year current row and the next 11
     
     # creates list of years
-    years_list <- rep(2007:2021)
+    years_list <- rep(2007:2023)
     years_list <- paste("Open Date ", years_list, sep="")
     
     for (y in years_list) {
